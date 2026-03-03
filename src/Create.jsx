@@ -20,6 +20,7 @@ const Create = () => {
 
         if (!user) {
             console.log("User not logged in");
+            setIsPending(false); // important
             return;
         }
 
