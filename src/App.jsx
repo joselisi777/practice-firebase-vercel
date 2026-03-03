@@ -6,7 +6,7 @@ import BlogDetails from './BlogDetails';
 import Login from './Login';
 import Signup from './Signup';
 import ErrorPage from './errorPage';
-import ProtectedRoutes from './utils/protectedRoutes';
+import ProtectedRoutes from './utils/ProtectedRoutes';
 
 function App() {
 
