@@ -5,6 +5,8 @@ import Create from './Create';
 import BlogDetails from './BlogDetails';
 import Login from './Login';
 import Signup from './Signup';
+import ErrorPage from './errorPage';
+import ProtectedRoutes from './utils/protectedRoutes';
 
 function App() {
 
@@ -16,27 +18,30 @@ function App() {
           <Routes>
             <Route path='/' element={<Login />}></Route>
             <Route path='/signup' element={<Signup />}></Route>
-            <Route path='/home' element={
-              <>
-                <Navbar />
-                <Home />
-              </>
-              }>
+            <Route element={<ProtectedRoutes />}>
+                <Route path='/home' element={
+                  <>
+                    <Navbar />
+                    <Home />
+                  </>
+                }>
+                </Route>
+                <Route path='/create' element={
+                  <>
+                    <Navbar />
+                    <Create />
+                  </>
+                }>
+                </Route>
+                <Route path='/blogs/:id' element={
+                  <>
+                    <Navbar />
+                    <BlogDetails />
+                  </>
+                }>
+                </Route>
             </Route>
-            <Route path='/create' element={
-              <>
-                <Navbar />
-                <Create />
-              </>
-              }>
-            </Route>
-            <Route path='/blogs/:id' element={
-              <>
-                <Navbar />
-                <BlogDetails />
-              </>
-              }>
-            </Route>
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </div>
       </div>

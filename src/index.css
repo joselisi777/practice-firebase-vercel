@@ -91,6 +91,32 @@
   margin-top: 20px;
 }
 
+/* 404 page */
+.error-page {
+  text-align: center;
+}
+.error-page h1 {
+  margin-top: 30%;
+  font-size: 80px;
+  color: #f1356d;
+}
+.error-page h2 {
+  font-size: 30px;
+  color: #f1356d;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.error-page button {
+  background: #f1356d;
+  color: #fff;
+  width: 20%;
+  border: 0;
+  padding: 8px;
+  margin-top: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 /* create new blog form */
 .create {
   max-width: 400px;

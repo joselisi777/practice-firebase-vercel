@@ -16,12 +16,14 @@ const useFetch = (collectionName, id) => {
 
     useEffect(() => {
 
+        let unsubscribe;
+
         if (id) {
             // document ref
             const docRef = doc(db, collectionName, id);
 
             // real time document get
-            onSnapshot(docRef, (snapshot) => {
+            unsubscribe = onSnapshot(docRef, (snapshot) => {
                 setData(snapshot.data());
                 setIsPending(false);
                 setError(null);
@@ -48,7 +50,7 @@ const useFetch = (collectionName, id) => {
             const q = query(colRef, where("author", "==", user.email), orderBy('createdAt'))
 
             // real time document get
-            onSnapshot(q, (snapshot) => {
+            unsubscribe = onSnapshot(q, (snapshot) => {
                 let blogs = [];
                 snapshot.docs.forEach((doc) => {
                     blogs.push({ ...doc.data(), id: doc.id });
@@ -60,6 +62,10 @@ const useFetch = (collectionName, id) => {
                 setIsPending(false);
                 setError(error.message);
             })
+        }
+
+        return () => {
+            if (unsubscribe) unsubscribe();
         }
         
     }, [db, collectionName, id]);
