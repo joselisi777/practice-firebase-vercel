@@ -7,6 +7,7 @@ import Login from './Login';
 import Signup from './Signup';
 import ErrorPage from './errorPage';
 import ProtectedRoutes from './utils/ProtectedRoutes';
+import PublicRoutes from './utils/PublicRoutes';
 
 function App() {
 
@@ -15,10 +16,12 @@ function App() {
     <Router>
       <div className='App'>
         <div className="content">
-          <Routes>
-            <Route path='/' element={<Login />}></Route>
-            <Route path='/signup' element={<Signup />}></Route>
-            <Route element={<ProtectedRoutes />}>
+            <Routes>
+              <Route element={<PublicRoutes />}>
+                <Route path='/' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+              </Route>
+              <Route element={<ProtectedRoutes />}>
                 <Route path='/home' element={
                   <>
                     <Navbar />
@@ -40,10 +43,10 @@ function App() {
                   </>
                 }>
                 </Route>
-            </Route>
-            <Route path='*' element={<ErrorPage />} />
-          </Routes>
-        </div>
+              </Route>
+              <Route path='*' element={<ErrorPage />} />
+            </Routes>
+          </div>
       </div>
     </Router>
     </>
